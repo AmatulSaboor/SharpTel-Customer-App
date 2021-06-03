@@ -1,0 +1,7 @@
+{
+  "name": "CustApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
