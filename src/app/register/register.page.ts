@@ -27,7 +27,7 @@ export class RegisterPage implements OnInit {
     //   this.dataservice.presentToast("Password and Confirm Password should match", 2000);
     // }
     // else{
-        this.http.post('https://localhost:44387/api/LogInCustomerAppApi/Register', User).subscribe(resp =>
+        this.http.post('http://192.168.15.2:5050/api/LogInCustomerAppApi/Register', User).subscribe(resp =>
         {
           this.Response = resp;
           if (this.Response.isSuccessful)

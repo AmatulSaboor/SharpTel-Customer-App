@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   SignIn(User){
     console.log(User.UserName + User.Password);
 
-    this.http.post('https://localhost:44387/api/LogInCustomerAppApi/Login', User).subscribe(resp =>
+    this.http.post('http://192.168.15.2:5050/api/LogInCustomerAppApi/Login', User).subscribe(resp =>
     { this.Response = resp;
       console.log(resp);
       console.log(this.Response);
