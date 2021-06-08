@@ -1,0 +1,39 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Log In</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">User Name</ion-label>
+      <ion-input type="text" [(ngModel)] = "User.UserName" name = "name" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" [(ngModel)] = "User.Password" name = "password" required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" (click) = "SignIn(User)">Sign In</ion-button>
+        <!-- <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a> -->
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

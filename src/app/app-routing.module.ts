@@ -10,6 +10,26 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'guestmode',
+    loadChildren: () => import('./guestmode/guestmode.module').then( m => m.GuestmodePageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'guestmodal',
+    loadChildren: () => import('./guestmodal/guestmodal.module').then( m => m.GuestmodalPageModule)
   }
 ];
 
