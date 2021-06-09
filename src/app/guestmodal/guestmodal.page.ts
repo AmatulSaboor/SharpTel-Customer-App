@@ -14,6 +14,7 @@ export class GuestmodalPage implements OnInit {
 
   closeModel(){
     console.log("closed modal");
+    //dsd
   }
 
 }
