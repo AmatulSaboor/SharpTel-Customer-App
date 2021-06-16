@@ -10,33 +10,54 @@
 
 <ion-header>
   <ion-toolbar>
+    <!-- <ion-buttons>
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons> -->
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button  defaultHref="folder"></ion-back-button>
     </ion-buttons>
     <ion-title>Guest Mode</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-row>
+  <ion-col style="text-align: right;">
+    <ion-button title = "close guest mode" fill = "clear" [routerLink]="['/folder']">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
+
 <ion-content>
   <form>
-    <ion-item lines="full">
-      <ion-label position="floating"> Name </ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Phone No</ion-label>
-      <ion-input type="number" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">City</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
+   <ion-row>
+      <ion-col>
+        <ion-button type="submit" [routerLink]="['/aboutsharptel']" color="primary" expand="block">About SharpTel</ion-button>
+      </ion-col>
+    </ion-row>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        <ion-button [hidden] = isHidden type="submit" color="primary" expand="block" (click) = "showQueryBox()">{{queryButtonText}}</ion-button>
+        <!-- <ion-anchor [routerLink]="['/sign-in']" color = "primary"> Sign In </ion-anchor> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col [hidden] = !isHidden>
+        <ion-item>
+          <!-- <ion-label position="floating"></ion-label> -->
+          <ion-textarea position="floating" placeholder = "Enter your query here"  [(ngModel)] = "query" name = "query"></ion-textarea>
+
+          <!-- <ion-button type="submit" color="primary" size = "small" fill = "outline" (click) = "addQuery()">Submit Query</ion-button> -->
+        </ion-item>
+        <div class="query-btns">
+          <ion-item >
+            <ion-button type="submit" size = "small" fill = "outline" color="primary" (click) = "clearQueryText()">Clear</ion-button>
+            <ion-button type="submit" size = "small" fill = "outline" color="primary" (click) = "addQuery()">Submit</ion-button>
+            <ion-button type="submit" size = "small" fill = "outline" color="primary" (click) = "hideQueryBox()">Cancel</ion-button>
+          </ion-item>
+        </div>
       </ion-col>
     </ion-row>
   </form>

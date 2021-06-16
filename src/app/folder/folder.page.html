@@ -19,7 +19,7 @@
 
           <span class="divider line one-line"></span>
 
-          <ion-button [routerLink]="['/guestmodal']" expand="block" color="primary">Guest Mode</ion-button>
+          <ion-button (click) = "openModal()" [routerLink]="['/guestmodal']" expand="block" color="primary">Guest Mode</ion-button>
 
           <span class="divider line one-line">or</span>
 

@@ -12,34 +12,43 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>Guest Mode</ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-row>
+  <ion-col style="text-align: right;">
+    <ion-button title = "close guest mode" fill = "clear" (click) =  "closeModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
 
 <ion-content>
   <form>
     <ion-item lines="full">
       <ion-label position="floating"> Name </ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input placeholder = "Enter your name" clearInput type = "text" [(ngModel)]="Guest.name" name = "name" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Phone No</ion-label>
-      <ion-input type="number" required></ion-input>
+      <ion-input placeholder = "Enter phone number" clearInput type = "number" [(ngModel)]="Guest.phoneNo" name = "phoneNo" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">City</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input placeholder = "Enter city" clearInput type = "text" [(ngModel)]="Guest.city" name = "city" required></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        <ion-button (click) = "dismiss()" type="submit" color="danger" expand="block">Submit</ion-button>
       </ion-col>
     </ion-row>
   </form>
 </ion-content>
+

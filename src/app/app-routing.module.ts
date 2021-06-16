@@ -4,11 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'folder',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
+    path: 'folder',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
@@ -30,6 +30,18 @@ const routes: Routes = [
   {
     path: 'guestmodal',
     loadChildren: () => import('./guestmodal/guestmodal.module').then( m => m.GuestmodalPageModule)
+  },
+  {
+    path: 'aboutsharptel',
+    loadChildren: () => import('./aboutsharptel/aboutsharptel.module').then( m => m.AboutsharptelPageModule)
+  },
+  {
+    path: 'first',
+    loadChildren: () => import('./first/first.module').then( m => m.FirstPageModule)
+  },
+  {
+    path: 'userprofile',
+    loadChildren: () => import('./userprofile/userprofile.module').then( m => m.UserprofilePageModule)
   }
 ];
 

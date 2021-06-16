@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
-import { GuestmodalPageRoutingModule } from './guestmodal-routing.module';
-import { GuestmodalPage } from './guestmodal.page';
+
+import { AboutsharptelPageRoutingModule } from './aboutsharptel-routing.module';
+
+import { AboutsharptelPage } from './aboutsharptel.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GuestmodalPageRoutingModule
+    AboutsharptelPageRoutingModule
   ],
-  declarations: [GuestmodalPage]
+  declarations: [AboutsharptelPage]
 })
-export class GuestmodalPageModule {}
+export class AboutsharptelPageModule {}

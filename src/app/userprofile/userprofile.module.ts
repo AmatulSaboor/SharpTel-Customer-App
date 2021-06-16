@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
-import { GuestmodalPageRoutingModule } from './guestmodal-routing.module';
-import { GuestmodalPage } from './guestmodal.page';
+
+import { UserprofilePageRoutingModule } from './userprofile-routing.module';
+
+import { UserprofilePage } from './userprofile.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GuestmodalPageRoutingModule
+    UserprofilePageRoutingModule
   ],
-  declarations: [GuestmodalPage]
+  declarations: [UserprofilePage]
 })
-export class GuestmodalPageModule {}
+export class UserprofilePageModule {}

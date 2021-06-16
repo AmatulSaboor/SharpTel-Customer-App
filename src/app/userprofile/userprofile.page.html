@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <span *ngIf="this.isEditable">
+    <ion-item>
+      <ion-label>Name: </ion-label>
+      <ion-input type = "text" [(ngModel)] = "customerInfo.CustomerName" name = "name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email: </ion-label>
+      <ion-input type = "email" [(ngModel)] = "customerInfo.Email" name = "email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Phone No: </ion-label>
+      <ion-input type = "text" [(ngModel)] = "customerInfo.PhoneNo" name = "phone no" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Company Name: </ion-label>
+      <ion-input type = "text" [(ngModel)] = "customerInfo.CompanyName" name = "company" required></ion-input>
+    </ion-item>
+    <ion-button (click) = "toggleEditingMode()">Cancel</ion-button>
+    <ion-button (click) = "editUser()">Save Changes</ion-button>
+  </span>
+  <span *ngIf="!this.isEditable">
+    <ion-text>
+      <p>Name: {{this.customerInfo.CustomerName}}</p>
+      <p>Email: {{this.customerInfo.Email}}</p>
+      <p>Company: {{this.customerInfo.CompanyName}}</p>
+      <p>PhoneNo: {{this.customerInfo.PhoneNo}}</p>
+  </ion-text>
+  </span>
+  <ion-button *ngIf="!this.isEditable" (click) = "toggleEditingMode()">Edit</ion-button>
+</ion-content>

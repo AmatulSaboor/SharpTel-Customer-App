@@ -1,4 +1,10 @@
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/quotes */
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { DataserviceService } from '../Services/dataservice.service';
 
 @Component({
   selector: 'app-guestmodal',
@@ -6,15 +12,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./guestmodal.page.scss'],
 })
 export class GuestmodalPage implements OnInit {
-
-  constructor() { }
-
+  Guest = {name : null, phoneNo: "", city : ""};         // TODO: change null type to a proper value
+  constructor(private route: Router, private dataservice: DataserviceService, private modalCtrl: ModalController) { }
   ngOnInit() {
   }
 
-  closeModel(){
-    console.log("closed modal");
-    //dsd
+  dismiss() {
+    if(this.Guest.name == null || this.Guest.phoneNo == null || this.Guest.city == null)
+    {
+      this.dataservice.presentToast("Please fill all the fields!", 3000);
+    }
+    else{
+    this.modalCtrl.dismiss({
+      name : this.Guest.name,
+      phoneNo : this.Guest.phoneNo,
+      city : this.Guest.city,
+      isSubmit: true
+    });
+    }
   }
 
+  closeModal(){
+    console.log("inside close modal function");
+    this.modalCtrl.dismiss({
+      name : "",
+      phoneNo : "",
+      city : "",
+      isSubmit: false
+    });
+  }
 }
