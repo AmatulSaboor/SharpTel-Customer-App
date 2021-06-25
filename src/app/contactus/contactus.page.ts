@@ -82,6 +82,7 @@ export class ContactusPage implements OnInit {
        // error
        console.log("couldn't upload the file");
        console.log(err);
+       console.log("just to check git changes");
      })
   }
 
