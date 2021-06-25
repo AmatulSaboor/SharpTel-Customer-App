@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { DataserviceService } from '../Services/dataservice.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-guestmode',
@@ -41,10 +42,16 @@ export class GuestmodePage implements OnInit {
     this.query = "";
   }
 
-  addQuery(){
+  async addQuery(){
     if (this.query != ""){
       this.Guest.GuestQuery = this.query;
-      this.http.post('https:/localhost:44387/api/GuestQueryCustomerAppApi/addQuery', this.Guest).subscribe(resp =>
+      await this.dataservice.presentLoading();
+      this.http.post('https:/localhost:44387/api/GuestQueryCustomerAppApi/addQuery', this.Guest).pipe(
+        finalize(async() => {
+          await this.dataservice.loading.dismiss();
+        })
+        )
+        .subscribe(resp =>
       { if (resp)
         {
           this.queryButtonText = "Add Another Query!";

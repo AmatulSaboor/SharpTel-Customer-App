@@ -40,6 +40,11 @@
     </ion-item>
 
     <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input placeholder = "Enter email ID" clearInput type = "email" [(ngModel)]="Guest.email" name = "email" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
       <ion-label position="floating">City</ion-label>
       <ion-input placeholder = "Enter city" clearInput type = "text" [(ngModel)]="Guest.city" name = "city" required></ion-input>
     </ion-item>

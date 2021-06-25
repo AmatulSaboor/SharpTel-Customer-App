@@ -31,10 +31,11 @@
   <span *ngIf="!this.isEditable">
     <ion-text>
       <p>Name: {{this.customerInfo.CustomerName}}</p>
+    </ion-text>
       <p>Email: {{this.customerInfo.Email}}</p>
       <p>Company: {{this.customerInfo.CompanyName}}</p>
       <p>PhoneNo: {{this.customerInfo.PhoneNo}}</p>
-  </ion-text>
+
   </span>
   <ion-button *ngIf="!this.isEditable" (click) = "toggleEditingMode()">Edit</ion-button>
 </ion-content>

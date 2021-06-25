@@ -14,15 +14,18 @@ import { DataserviceService } from '../Services/dataservice.service';
 })
 export class HomePage implements OnInit {
 
-  constructor(private dataservice: DataserviceService) { }
-
-  ngOnInit() {
+  constructor(private dataservice: DataserviceService) {
     if(this.dataservice.getSignedInInfo != null){
       var a = this.dataservice.getSignedInInfo();
       console.log(a);
+      console.log("inside home page");
     }
     else{
       console.log("user info not available");
     }
+  }
+
+  ngOnInit() {
+
   }
 }

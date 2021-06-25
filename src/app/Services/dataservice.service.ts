@@ -4,20 +4,34 @@
 /* eslint-disable @typescript-eslint/quotes */
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataserviceService {
+  public loading:any;
+  constructor(public loadingController: LoadingController, public alertCtrl: AlertController, public route: Router, public toastController: ToastController) { }
 
-  constructor(public alertCtrl: AlertController, public route: Router, public toastController: ToastController) { }
   getSignedInInfo(){
     return JSON.parse(localStorage.getItem("SignedInUser"));
   }
   setSignedInInfo(user){
     localStorage.setItem("SignedInUser", JSON.stringify(user));
-    // this.CurrentUser = data;
+  }
+
+  getUserType(){
+    return JSON.parse(localStorage.getItem("UserType"));
+  }
+  setUserType(userType){
+    localStorage.setItem("UserType", JSON.stringify(userType));
+  }
+
+  removeUser(){
+    localStorage.removeItem("SignedInUser");
+  }
+  removeUserType(){
+    localStorage.removeItem("UserType");
   }
   getGuestId(){
     return JSON.parse(localStorage.getItem("GuestId"));
@@ -25,9 +39,6 @@ export class DataserviceService {
   setGuestId(id){
     localStorage.setItem("GuestId", JSON.stringify(id));
     // this.CurrentUser = data;
-  }
-  removeUser(){
-    localStorage.removeItem("SignedInUser");
   }
 
   logout(){
@@ -50,9 +61,9 @@ export class DataserviceService {
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
-            console.log(this.getSignedInInfo());
             this.removeUser();
+            this.removeUserType();
+            console.log(this.getUserType);
             console.log("signed in user: " + this.getSignedInInfo());
             this.presentToast("Signed out sucessfully!", 3000);
             this.route.navigate(['/folder']);
@@ -63,18 +74,21 @@ export class DataserviceService {
 
     await alert.present();
   }
-  // logout(){
-  //   this.removeUser();
-  //   var a = this.getSignedInInfo();
-  //   console.log(a);
-  //   this.presentToast("Successfully Logged Out", 3000);
-  //   this.route.navigate(['/login']);
-  // }
+
+  async presentLoading() {
+    // Prepare a loading controller
+    this.loading = await this.loadingController.create({
+        message: 'Loading...'
+    });
+    // Present the loading controller
+    await this.loading.present();
+  }
+
   async presentToast(Message : string, Duration : number) {
     const toast = await this.toastController.create({
       message: Message,
       duration: Duration,
-      //position: 'middle'
+      position: 'top'
     });
     toast.present();
   }

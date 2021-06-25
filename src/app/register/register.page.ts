@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataserviceService } from '../Services/dataservice.service';
 import { ToastController } from '@ionic/angular';
 import { EventsService } from '../Services/events.service';
+import { finalize } from 'rxjs/operators';
 
 
 @Component({
@@ -21,29 +22,39 @@ export class RegisterPage implements OnInit {
   User: any = {UserName: "", CompanyName: "", PhoneNo: "", Email :  "", Password : "", ConfirmPassword: ""};          //TODO: change it to none-type instead of empty string
   Response: any = {IsSuccessful: false, CustomerInfo: {}, ValidationErrors: [] }
   constructor(private events:EventsService, private http : HttpClient, public route:Router, public dataservice : DataserviceService, public toastController: ToastController) { }
+  userType = "customer";
 
   ngOnInit() {
   }
   // ================================= register user function ====================================
-  RegisterUser(User){
-        this.http.post('https:/localhost:44387/api/LogInCustomerAppApi/Register', User).subscribe(resp =>
-        {
-          this.Response = resp;
-          if (this.Response.isSuccessful)
-          {
-            this.dataservice.setSignedInInfo(this.Response.CustomerInfo);
-            var a = this.dataservice.getSignedInInfo();
-            this.events.publishSomeData({
-              User: this.Response.CustomerInfo
-            });
-            console.log(a.Id);
-            this.dataservice.presentToast("Successfully Registered", 2000);
-            this.route.navigate(['/home']);
-          }
-        else{
-          this.dataservice.presentToast(this.Response.ValidationErrors[0], 2000)
-          console.log(this.Response.ValidationErrors);}
+  async RegisterUser(User){
+    await this.dataservice.presentLoading();
+    this.http.post('https:/localhost:44387/api/LogInCustomerAppApi/Register', User).pipe(
+      finalize(async() => {
+        await this.dataservice.loading.dismiss();
+      })
+      )
+      .subscribe(resp =>
+    {
+      this.Response = resp;
+      if (this.Response.isSuccessful)
+      {
+        this.dataservice.setSignedInInfo(this.Response.CustomerInfo);
+        this.dataservice.setUserType(this.userType);
+        var b = this.dataservice.getUserType;
+        console.log(b);
+        var a = this.dataservice.getSignedInInfo();
+        this.events.publishSomeData({
+          User: this.Response.CustomerInfo
         });
+        console.log(a.CustomerId);
+        this.dataservice.presentToast("Successfully Registered", 2000);
+        this.route.navigate(['/home']);
+      }
+    else{
+      this.dataservice.presentToast(this.Response.ValidationErrors[0], 2000)
+      console.log(this.Response.ValidationErrors);}
+    });
     }
   }
 

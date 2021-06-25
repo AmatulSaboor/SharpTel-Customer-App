@@ -13,6 +13,7 @@ import { NavController } from '@ionic/angular';
 import { GuestmodalPage } from '../guestmodal/guestmodal.page';
 import { HttpClient } from '@angular/common/http';
 import { DataserviceService } from '../Services/dataservice.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-folder',
@@ -50,8 +51,14 @@ export class FolderPage implements OnInit {
 
     }
 
-    addGuestToDatabase(guestInfo) {
-      this.http.post('https://localhost:44387/api/GuestQueryCustomerAppApi/addGuest', guestInfo).subscribe(resp =>
+    async addGuestToDatabase(guestInfo) {
+      await this.dataservice.presentLoading();
+      this.http.post('https://localhost:44387/api/GuestQueryCustomerAppApi/addGuest', guestInfo).pipe(
+        finalize(async() => {
+          await this.dataservice.loading.dismiss();
+        })
+        )
+        .subscribe(resp =>
     { this.Response = resp;
       if(this.Response.isSuccessful == true)
       {

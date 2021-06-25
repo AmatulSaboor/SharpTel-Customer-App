@@ -19,13 +19,13 @@ export class AppComponent {
   UserEmail:any;
   public appPages = [
     { title: 'My Profile', url: '/userprofile', icon: 'mail' },
-    { title: 'Add Ticket', url: '/folder/utboxO', icon: 'paper-plane' },
-    { title: 'Add Query', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Ticket History', url: '/folder/Archived', icon: 'archive' },
+    { title: 'Add Ticket', url: '/addticket', icon: 'paper-plane' },
+    { title: 'Add Query', url: '/addquery', icon: 'heart' },
+    { title: 'Ticket History', url: '/tickethistory', icon: 'archive' },
     { title: 'About SharpTel', url: '/aboutsharptel', icon: 'trash' },
-    { title: 'Contact Us', url: '/aboutsharptel', icon: 'heart' },
+    { title: 'Contact Us', url: '/contactus', icon: 'heart' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
     constructor(private events: EventsService, private route: Router, private dataservice: DataserviceService) {
     this.initApp();
@@ -39,7 +39,7 @@ export class AppComponent {
       this.UserName = data.User.CustomerName;
       this.UserEmail = data.User.Email;
     })
-    if (this.dataservice.getSignedInInfo() == null){
+    if (this.dataservice.getSignedInInfo() != null){
       console.log("already signed in");
       console.log(this.dataservice.getSignedInInfo());
         this.route.navigate(['/home']);

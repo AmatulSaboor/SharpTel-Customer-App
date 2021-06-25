@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Query</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+     <ion-row>
+       <ion-col>
+         <ion-item>
+           <ion-textarea position="floating" placeholder = "Enter your query here"  [(ngModel)] = "query" name = "query"></ion-textarea>
+         </ion-item>
+
+         <div class="query-btns">
+           <ion-item >
+             <ion-button type="submit" size = "small" fill = "outline" color="primary" (click) = "clearQueryText()">Clear</ion-button>
+             <ion-button type="submit" size = "small" fill = "outline" color="primary" (click) = "addQuery()">Submit</ion-button>
+             <ion-button type="submit" size = "small" fill = "outline" color="primary" [routerLink] = "['/home']">Cancel</ion-button>
+           </ion-item>
+         </div>
+       </ion-col>
+     </ion-row>
+   </form>
+</ion-content>

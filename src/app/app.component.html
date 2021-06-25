@@ -5,7 +5,7 @@
         <ion-list id="inbox-list">
           <ion-list-header>Welcome {{UserName}}</ion-list-header>
           <ion-note>{{UserEmail}}</ion-note>
-          <ion-note>{{UserId}}</ion-note>
+          <!-- <ion-note>{{UserId}}</ion-note> -->
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">

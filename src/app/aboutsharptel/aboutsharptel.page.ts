@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aboutsharptel.page.scss'],
 })
 export class AboutsharptelPage implements OnInit {
+  images = ['SahrptelLogo.png', 'groupphoto.png'];
+  userType: any;
+  constructor() {
+    console.log("inside about sharptel page");
+   }
 
-  constructor() { }
-
+  isConnectivity = false;
   ngOnInit() {
+
+  }
+  toggleIsConnectivity(){
+    this.isConnectivity = !this.isConnectivity;
+    console.log(this.isConnectivity);
   }
 
 }

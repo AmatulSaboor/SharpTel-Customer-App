@@ -5,10 +5,10 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-var */
 import { HttpClient } from '@angular/common/http';
-import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../Services/dataservice.service';
 import { EventsService } from '../Services/events.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-userprofile',
@@ -19,19 +19,28 @@ export class UserprofilePage implements OnInit {
   customerInfo:any = {CustomerId : null, CustomerName : "", CompanyName : "", PhoneNo : "", Email : ""};
   isEditable = false;
   Response :any;
-  constructor(private events: EventsService, private http: HttpClient, private dataservice: DataserviceService) { }
+  constructor(private events: EventsService, private http: HttpClient, private dataservice: DataserviceService) {
+    console.log("inside user profile page");
+    this.customerInfo = this.dataservice.getSignedInInfo();
+    console.log(this.customerInfo);
+  }
 
   ngOnInit() {
-     this.customerInfo = this.dataservice.getSignedInInfo();
+
   }
   toggleEditingMode(){
     this.isEditable = !this.isEditable;
   }
 
-  editUser(){
+  async editUser(){
     console.log(this.customerInfo);
-
-    this.http.post('https:/localhost:44387/api/CustomerProfileAppApi/editCustomer', this.customerInfo).subscribe(resp =>
+    await this.dataservice.presentLoading();
+    this.http.post('https:/localhost:44387/api/CustomerProfileAppApi/editCustomer', this.customerInfo).pipe(
+      finalize(async() => {
+        await this.dataservice.loading.dismiss();
+      })
+      )
+      .subscribe(resp =>
       { this.Response = resp;
         console.log(resp);
         console.log(this.Response);

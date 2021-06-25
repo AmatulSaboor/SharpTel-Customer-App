@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Ticket</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Link Name</ion-label>
+      <ion-input type="text" required name = "linkname" [(ngModel)] = "Ticket.linkname"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Contact Number (POC)</ion-label>
+      <ion-input type="tel" required name = "poc" [(ngModel)] = "Ticket.poc"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email ID</ion-label>
+      <ion-input type="email" required name = "email" [(ngModel)] = "Ticket.email"></ion-input>
+    </ion-item>
+
+     <ion-list>
+      <ion-item>
+        <ion-label>Issue Type</ion-label>
+        <ion-select placeholder="Select One"  [(ngModel)]= "Ticket.issueType" name = "issueType">
+          <ion-select-option value= {{issue}} *ngFor = "let issue of issueTypes">{{issue}}</ion-select-option>
+          <!-- <ion-select-option value="No browsing">No browsing</ion-select-option>
+          <ion-select-option value="Packet Loss">Packet Loss</ion-select-option>
+          <ion-select-option value="Internet Issue">Internet Issue</ion-select-option>
+          <ion-select-option value="Slow browisng">Slow browisng</ion-select-option>
+          <ion-select-option value="Other">Other</ion-select-option> -->
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-item *ngIf = "Ticket.issueType == 'Other'">
+      <ion-input type="text" required name = "customIssueType" [(ngModel)] = "Ticket.customIssueType" placeholder = "Type your issue type here"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Attachement</ion-label>
+      <ion-input type="text" required name = "attachement" [(ngModel)] = "Ticket.attachement"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea position="floating"name = "remarks" placeholder = "Enter your ticket here"  [(ngModel)] = "Ticket.remarks"></ion-textarea>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" (click) = "addTicket()">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  </ion-content>

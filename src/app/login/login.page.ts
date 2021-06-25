@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataserviceService } from '../Services/dataservice.service';
 import { EventsService } from '../Services/events.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -17,23 +18,31 @@ export class LoginPage implements OnInit {
   User = {UserName :  "", Password : "", RememberMe: false};    //TODO: change it to none-type instead of empty string
   Response: any = {IsSuccessful: false, CustomerInfo: {}, ValidationErrors: [] };
   constructor(private events: EventsService, private http : HttpClient, public route:Router, private dataservice: DataserviceService) { }
-
+  userType = "customer";
 
   ngOnInit() {
   }
 
   // ================================= sign in function ====================================
-  SignIn(User){
+  async SignIn(User){
     console.log(User.UserName + User.Password);
-
-    this.http.post('https:/localhost:44387/api/LogInCustomerAppApi/Login', User).subscribe(resp =>
+    await this.dataservice.presentLoading();
+    this.http.post('https:/localhost:44387/api/LogInCustomerAppApi/Login', User).pipe(
+      finalize(async() => {
+        await this.dataservice.loading.dismiss();
+      })
+      )
+      .subscribe(resp =>
     { this.Response = resp;
       console.log(resp);
       console.log(this.Response);
       if (this.Response.isSuccessful)
       {
         this.dataservice.setSignedInInfo(this.Response.CustomerInfo);
+        this.dataservice.setUserType(this.userType);
+        var b = this.dataservice.getUserType;
         var a = this.dataservice.getSignedInInfo();
+        console.log(b);
         console.log(a.CustomerId);
         console.log("user id is above :");
         this.dataservice.presentToast("Successfully Signed In", 2000);

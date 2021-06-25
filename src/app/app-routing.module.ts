@@ -36,12 +36,24 @@ const routes: Routes = [
     loadChildren: () => import('./aboutsharptel/aboutsharptel.module').then( m => m.AboutsharptelPageModule)
   },
   {
-    path: 'first',
-    loadChildren: () => import('./first/first.module').then( m => m.FirstPageModule)
-  },
-  {
     path: 'userprofile',
     loadChildren: () => import('./userprofile/userprofile.module').then( m => m.UserprofilePageModule)
+  },
+  {
+    path: 'addquery',
+    loadChildren: () => import('./addquery/addquery.module').then( m => m.AddqueryPageModule)
+  },
+  {
+    path: 'addticket',
+    loadChildren: () => import('./addticket/addticket.module').then( m => m.AddticketPageModule)
+  },
+  {
+    path: 'contactus',
+    loadChildren: () => import('./contactus/contactus.module').then( m => m.ContactusPageModule)
+  },
+  {
+    path: 'tickethistory',
+    loadChildren: () => import('./tickethistory/tickethistory.module').then( m => m.TickethistoryPageModule)
   }
 ];
 
