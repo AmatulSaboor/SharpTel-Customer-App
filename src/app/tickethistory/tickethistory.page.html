@@ -21,10 +21,10 @@
             <ion-item lines="full">
               <ion-label *ngIf="ticket.isOpen" position = "floating" color = "success" class = "ion-text-right">Open</ion-label>
               <ion-label *ngIf="!ticket.isOpen" position = "floating" color = "danger" class = "ion-text-right">Closed</ion-label>
-              <ion-label position = "floating">Link Name : {{ticket.LinkName}}</ion-label>
-              <ion-label position = "floating">POC : {{ticket.POC}}</ion-label>
+              <ion-label position = "floating">Service Type : {{ticket.LinkName}}</ion-label>
+              <ion-label position = "floating">Contact No : {{ticket.POC}}</ion-label>
               <ion-label position = "floating">Opened On : {{ticket.openedOn | date:'MMM d, y'}}</ion-label>
-              <ion-label position = "floating">Issue Type : {{ticket.IssueType}}</ion-label>
+              <ion-label position = "floating">Nature of Problem : {{ticket.IssueType}}</ion-label>
               <ion-label style = "margin-bottom : 20px;" position = "floating">Remarks : {{ticket.Remarks}}</ion-label>
             </ion-item>
           </ion-col>

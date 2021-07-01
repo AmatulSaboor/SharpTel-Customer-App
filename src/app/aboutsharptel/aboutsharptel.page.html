@@ -2,8 +2,9 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button *ngIf= "userType == 'customer'"></ion-menu-button>
+      <ion-back-button *ngIf= "userType == 'guest'"></ion-back-button>
     </ion-buttons>
-    <ion-title>About SharpTel</ion-title>
+    <ion-title>About SharpTel {{userType}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -30,62 +31,51 @@
         </ion-thumbnail>
       </ion-item>
       <ion-item>
-        <ion-row>
-          <ion-col>
-            <ion-card class = "red-cards">
-                <ion-header>
-                  <ion-title>Our Vision</ion-title>
-                </ion-header>
-                <ion-card-content>
-                  To provide quality services that exceeds the expectations of our esteemed customers.
-                </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card class = "red-cards">
-                <ion-header>
-                  <ion-title>Our Mission</ion-title>
-                </ion-header>
-                <ion-card-content>
-                  To empower businesses by providing next generation ICT solutions and services to be used as a competitive advantage.
-                </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-        <!-- <ion-label></ion-label> -->
+        <ion-grid>
+          <ion-row style="padding : 0px;">
+            <ion-col size = "6">
+              <ion-card class = "red-cards">
+                  <ion-header>
+                    <ion-title color = "danger">Our Vision</ion-title>
+                  </ion-header>
+                  <ion-card-content>
+                    To provide quality services that exceeds the expectations of our esteemed customers.
+                  </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size = "6">
+              <ion-card class = "red-cards">
+                  <ion-header>
+                    <ion-title color = "danger">Our Mission</ion-title>
+                  </ion-header>
+                  <ion-card-content>
+                    To empower businesses by providing next generation ICT solutions and services to be used as a competitive advantage.
+                  </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+          <!-- <ion-label></ion-label> -->
       </ion-item>
     </ion-card>
 
-    <!-- image gallery -->
-    <ion-card>
-      <ion-content>
-        <ion-slides class="image-slider" loop="true" slidesPerView="2">
-          <ion-slide *ngFor="let img of images">
-            <img src="/assets/images/gallery/groupphoto.png" class="thumb-img" imageViewer/>
-          </ion-slide>
-        </ion-slides>
-      </ion-content>
-    </ion-card>
-
-    <ion-list-header>
-      <ion-button (click) = "toggleIsConnectivity()">Connectivity Services</ion-button>
-    </ion-list-header>
-
-    <ion-list *ngIf = "isConnectivity">
+    <ion-footer>
+      <!-- <ion-item>
+        <ion-button [routerLink]="['C:/Users/amatu/OneDrive/SharpTel/SharpTel%20Corporate%20Profile.pdf']" expand="block" color="primary" fill = "clear"><u> More Details </u></ion-button>
+      </ion-item> -->
       <ion-item>
-        <ion-label>Pokémon Yellow</ion-label>
+        <ion-icon name="location"></ion-icon><ion-label>Sharp Telecom (Private) Limited
+          The Smart Tower| 5th Floor, Plot # C-10/2,
+          Off Sharah-e-Faisal, Opposite FTC,Karachi, Pakistan</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Mega Man X</ion-label>
+        <ion-icon name="call"></ion-icon><ion-label>Phone number: +92-311-128-4373</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>The Legend of Zelda</ion-label>
+        <ion-icon name="mail"></ion-icon><ion-label>Email: servicedesk@sharptel.pk</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Pac-Man</ion-label>
+        <ion-icon name="globe"></ion-icon><ion-label> www.https://sharptel.pk/</ion-label>
       </ion-item>
-      <ion-item>
-        <ion-label>Super Mario World</ion-label>
-      </ion-item>
-    </ion-list>
+    </ion-footer>
   </ion-content>

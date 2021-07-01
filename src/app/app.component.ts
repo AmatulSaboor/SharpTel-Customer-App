@@ -18,16 +18,21 @@ export class AppComponent {
   UserName:any;
   UserEmail:any;
   public appPages = [
-    { title: 'My Profile', url: '/userprofile', icon: 'mail' },
-    { title: 'Add Ticket', url: '/addticket', icon: 'paper-plane' },
-    { title: 'Add Query', url: '/addquery', icon: 'heart' },
-    { title: 'Ticket History', url: '/tickethistory', icon: 'archive' },
-    { title: 'About SharpTel', url: '/aboutsharptel', icon: 'trash' },
-    { title: 'Contact Us', url: '/contactus', icon: 'heart' },
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'My Profile', url: '/userprofile', icon: 'person-circle' },
+    { title: 'Add Ticket', url: '/addticket', icon: 'duplicate' },
+    { title: 'Business Query', url: '/addquery', icon: 'ticket' },
+    { title: 'Ticket History', url: '/tickethistory', icon: 'layers' },
+    { title: 'About SharpTel', url: '/aboutsharptel', icon: 'grid' },
+    { title: 'Contact Us', url: '/contactus', icon: 'call' },
   ];
   // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
     constructor(private events: EventsService, private route: Router, private dataservice: DataserviceService) {
+
+  }
+  ionViewWillEnter(){
+    console.log("inside ion view will enter app.compo");
     this.initApp();
   }
 

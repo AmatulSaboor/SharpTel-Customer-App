@@ -22,7 +22,7 @@
 
 <ion-row>
   <ion-col style="text-align: right;">
-    <ion-button title = "close guest mode" fill = "clear" [routerLink]="['/folder']">
+    <ion-button title = "close guest mode" fill = "clear" (click) = closeModal()>
       <ion-icon name="close-outline"></ion-icon>
     </ion-button>
   </ion-col>
@@ -62,3 +62,4 @@
     </ion-row>
   </form>
 </ion-content>
+

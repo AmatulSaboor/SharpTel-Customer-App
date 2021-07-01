@@ -34,13 +34,22 @@ export class AddqueryPage implements OnInit {
   clearQueryText(){
     this.query = "";
   }
+  // async confirmationAddQuery(){
+  //   console.log("inside confirmation add query function");
+  //   // console.log(this.dataservice.presentAlertConfirm("Do you want to add this business query?"));
+  //   await this.dataservice.presentAlertConfirm("Do you want to add this business query?").subscribe(resp => {console.log("success" + resp)}).catch(err => console.log("failure" + err));
+  //   // if (this.dataservice.presentAlertConfirm("Do you want to add this business query?")){
+  //   //   this.addQuery();
+  //   // }
+  // }
   async addQuery(){
-    await this.dataservice.presentLoading();
+
     this.custInfo = this.dataservice.getSignedInInfo();
     this.customerQuery.customerId = this.custInfo.CustomerId;
     this.customerQuery.query = this.query;
     console.log(this.customerQuery);
-    if (this.query != ""){
+
+      await this.dataservice.presentLoading();
       this.http.post('https:/localhost:44387/api/CustomerQueryCustomerAppApi/addQuery', this.customerQuery).pipe(
         finalize(async() => {
           await this.dataservice.loading.dismiss();
@@ -50,8 +59,6 @@ export class AddqueryPage implements OnInit {
       { if (resp == true)
         {
           // this.queryButtonText = "Add Another Query!";
-          // this.presentAlertConfirm();
-          // this.hideQueryBox();
           this.query = "";
           console.log("query has been added succesfully");
           this.dataservice.presentToast("Query has been added successfully, you'll be contacted soon!", 3000);
@@ -61,30 +68,32 @@ export class AddqueryPage implements OnInit {
         this.dataservice.presentToast("There was an error in generating your query, please try again!", 3000);}
         });
     }
-    else{
-      console.log("empty string");
-      this.dataservice.presentToast("You must enter a query inorder to submit it", 2000);
-    }
-  }
 
   async presentAlertConfirm() {
+    if (this.query != ""){
     const alert = await this.alertCtrl.create({
-    //cssClass: 'my-custom-class',
-    header: 'Success!',
-    message: "Your query has been added suceessfully. You'll be contacted soon!!!",
+    header: 'Confirm!',
+    message: "Do you want to add query?",
     buttons: [
       {
-        text: 'Ok',
+        text: 'Cancel',
         role: 'cancel',
-        //cssClass: 'secondary',
         handler: (blah) => {
-          console.log('Query added: blah');
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Okay',
+        handler: () => {
+          this.addQuery();
         }
       }
     ]
   });
-
   await alert.present();
 }
-
+  else{
+    console.log("empty string");
+    this.dataservice.presentToast("You must enter a query inorder to submit it", 2000);
+  }
+  }
 }

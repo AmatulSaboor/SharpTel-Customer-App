@@ -4,6 +4,7 @@ import { finalize } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-tickethistory',
   templateUrl: './tickethistory.page.html',
@@ -16,16 +17,19 @@ export class TickethistoryPage implements OnInit {
   response: any;
   listIsEmpty = false;
   constructor(private dataservice: DataserviceService, private http: HttpClient, private route: Router) {
+
+   }
+
+  ngOnInit() {
+  }
+  ionViewWillEnter(){
+    console.log("inside ion view will enter");
     console.log("inside ticket history page");
     this.customerInfo = this.dataservice.getSignedInInfo();
     this.customerID = this.customerInfo.CustomerId;
     console.log(this.customerID);
     this.getTicketHistory();
-   }
-
-  ngOnInit() {
-  }
-
+    }
   async getTicketHistory(){
 
     await this.dataservice.presentLoading();
@@ -52,7 +56,7 @@ export class TickethistoryPage implements OnInit {
       }
       else
       console.log("didnt get history");
-   
+
     //     this.route.navigate(['/home']);
     //   }
     // else{

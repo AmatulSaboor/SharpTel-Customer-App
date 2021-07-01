@@ -46,6 +46,7 @@ export class FolderPage implements OnInit {
       console.log("the guest id is: " + this.Response.GuestId);
     }
     else{
+      console.log("closed by clsoed model function");
       this.route.navigate(['/folder']);
     }
 
@@ -64,6 +65,7 @@ export class FolderPage implements OnInit {
       {
         console.log("yeahhhhh");
         console.log(this.Response.GuestId);
+        this.dataservice.setUserType('guest');
         this.dataservice.setGuestId(this.Response.GuestId);
         this.route.navigate(['/guestmode']);
       }

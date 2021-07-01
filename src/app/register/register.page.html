@@ -1,13 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content> -->
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -20,9 +10,20 @@
 <ion-content>
   <form>
     <ion-item lines="full">
-      <ion-label position="floating">Name</ion-label>
-      <ion-input type="text" required name = "name" [(ngModel)] = "User.UserName"></ion-input>
+      <ion-label position="floating">User Name</ion-label>
+      <ion-input type="text" required name = "username" [(ngModel)] = "User.UserName"></ion-input>
     </ion-item>
+
+    <!-- <ion-item lines="full">
+      <div>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input type="text" required name = "firstname" ></ion-input>
+     </div>
+     <div>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input type="text" required name = "lastname" ></ion-input>
+     </div>
+    </ion-item> -->
 
     <ion-item lines="full">
       <ion-label position="floating">Company Name</ion-label>

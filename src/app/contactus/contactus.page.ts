@@ -73,7 +73,7 @@ export class ContactusPage implements OnInit {
        headers: {}
     }
 
-    this.fileTransfer.upload(uri, "https://180.178.129.150:443/FileUploaderCustomerAppApi/UploadImages", options)
+    this.fileTransfer.upload(uri, "https:/localhost:44387/FileUploaderCustomerAppApi/UploadImages", options)
      .then((data) => {
        // success
        console.log(data);
@@ -82,7 +82,6 @@ export class ContactusPage implements OnInit {
        // error
        console.log("couldn't upload the file");
        console.log(err);
-       console.log("just to check git changes");
      })
   }
 
@@ -103,7 +102,7 @@ export class ContactusPage implements OnInit {
       params: { 'title': "Testing Image" }
     };
 
-    fileTransfer.upload(uri, "https://180.178.129.150:443/FileUploaderCustomerAppApi/UploadImages",options).then((res)=>{
+    fileTransfer.upload(uri, "https:/localhost:44387/FileUploaderCustomerAppApi/UploadImages",options).then((res)=>{
       console.log("image has been added to DB successfully");
         console.log(res);
     },(err)=>{

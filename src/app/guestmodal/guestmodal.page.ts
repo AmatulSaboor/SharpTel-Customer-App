@@ -12,18 +12,22 @@ import { DataserviceService } from '../Services/dataservice.service';
   styleUrls: ['./guestmodal.page.scss'],
 })
 export class GuestmodalPage implements OnInit {
-  Guest = {name : null, phoneNo: "", city : "", email : ""};         // TODO: change null type to a proper value
+  Guest = {name : null, phoneNo: null, city : null, email : null};         // TODO: change null type to a proper value
   constructor(private route: Router, private dataservice: DataserviceService, private modalCtrl: ModalController) { }
   ngOnInit() {
   }
 
   dismiss() {
-    if(this.Guest.name == null || this.Guest.phoneNo == null || this.Guest.city == null, this.Guest.email == null)
+    console.log("inside dismiss function");
+    console.log(this.Guest);
+    console.log(this.Guest.name == null);
+    if(this.Guest.name == null || this.Guest.phoneNo == null || this.Guest.city == null || this.Guest.email == null)
     {
       this.dataservice.presentToast("Please fill all the fields!", 3000);
+      
     }
     else{
-    this.modalCtrl.dismiss({
+      this.modalCtrl.dismiss({
       name : this.Guest.name,
       phoneNo : this.Guest.phoneNo,
       city : this.Guest.city,
@@ -34,6 +38,8 @@ export class GuestmodalPage implements OnInit {
 
   closeModal(){
     console.log("inside close modal function");
+    this.dataservice.removeUserType();
+    this.dataservice.removeGuestId();
     this.modalCtrl.dismiss({
       name : "",
       phoneNo : "",

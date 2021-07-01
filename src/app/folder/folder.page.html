@@ -3,7 +3,11 @@
     <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons> -->
-    <ion-title>Welcome</ion-title>
+    <ion-title>
+    <ion-item>
+      <img src = "/assets/images/gallery/SharptelLogo.png">
+    </ion-item>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +16,7 @@
     <img src = "/assets/images/SharptelLogo.png"/>
   </div> -->
   <ion-content class="auth-form">
-    <ion-grid>
+    <ion-grid style = "margin-top: 100px;">
       <ion-row>
         <ion-col align-self-center>
           <ion-button [routerLink]="['/register']" expand="block" color="primary">Register</ion-button>

@@ -20,11 +20,14 @@ export class UserprofilePage implements OnInit {
   isEditable = false;
   Response :any;
   constructor(private events: EventsService, private http: HttpClient, private dataservice: DataserviceService) {
+
+  }
+
+  ionViewWillEnter(){
     console.log("inside user profile page");
     this.customerInfo = this.dataservice.getSignedInInfo();
     console.log(this.customerInfo);
   }
-
   ngOnInit() {
 
   }

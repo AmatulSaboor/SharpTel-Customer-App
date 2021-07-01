@@ -38,14 +38,16 @@ export class DataserviceService {
   }
   setGuestId(id){
     localStorage.setItem("GuestId", JSON.stringify(id));
-    // this.CurrentUser = data;
+  }
+  removeGuestId(){
+    localStorage.removeItem("GuestId");
   }
 
   logout(){
-    this.presentAlertConfirm();
+    this.presentLogoutAlertConfirm();
   }
 
-  async presentAlertConfirm() {
+  async presentLogoutAlertConfirm() {
       const alert = await this.alertCtrl.create({
       //cssClass: 'my-custom-class',
       header: 'Confirm!',
@@ -74,6 +76,31 @@ export class DataserviceService {
 
     await alert.present();
   }
+    async presentAlertConfirm(msg) {
+      const alert = await this.alertCtrl.create({
+      //cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: msg,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          //cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            // this.presentToast("Signed out sucessfully!", 3000);
+            // this.route.navigate(['/folder']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
   async presentLoading() {
     // Prepare a loading controller
@@ -88,7 +115,7 @@ export class DataserviceService {
     const toast = await this.toastController.create({
       message: Message,
       duration: Duration,
-      position: 'top'
+      position: 'middle'
     });
     toast.present();
   }

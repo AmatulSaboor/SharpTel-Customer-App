@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+// import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [AppComponent],

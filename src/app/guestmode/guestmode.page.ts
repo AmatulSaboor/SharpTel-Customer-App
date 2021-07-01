@@ -42,6 +42,12 @@ export class GuestmodePage implements OnInit {
     this.query = "";
   }
 
+  closeModal(){
+    this.dataservice.removeUserType();
+    this.dataservice.removeGuestId();
+    this.route.navigate(['/folder']);
+  }
+
   async addQuery(){
     if (this.query != ""){
       this.Guest.GuestQuery = this.query;
@@ -58,8 +64,6 @@ export class GuestmodePage implements OnInit {
           this.presentAlertConfirm();
           this.hideQueryBox();
           console.log("alert have been shown");
-          //this.dataservice.presentToast("Query has been added successfully", 3000);
-          //this.route.navigate(['/home']);
         }
       else{
         this.dataservice.presentToast("There was an error in generating your query, please try again!", 3000);}

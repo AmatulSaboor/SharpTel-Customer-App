@@ -3,9 +3,87 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>home</ion-title>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card color = "black" *ngIf="!listIsEmpty">
+    <ion-card-content>
+      <ion-label>Tikcets : {{ticketStatus.Total}}</ion-label><br>
+      <ion-label>Opened Tickets : {{ticketStatus.Opened}}</ion-label><br>
+      <ion-label>Closed tikcets : {{ticketStatus.Closed}}</ion-label><br>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color = "black" *ngIf="listIsEmpty">
+    <ion-card-content>
+      <label>You have not added any ticket yet</label>
+      <ion-button [routerLink]="['/addticket']" expand="block" color="danger">Add Ticket Now</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color = "black">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm = "4">
+            <div [routerLink] = "['/addticket']">
+              <ion-icon name = "duplicate-outline"></ion-icon>
+              <ion-label>Add Ticket</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size-sm = "4">
+            <div [routerLink] = "['/addquery']">
+              <ion-icon name = "ticket-outline"></ion-icon>
+              <ion-label>Business Query</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size-sm = "4">
+            <div [routerLink] = "['/tickethistory']">
+              <ion-icon name = "layers-outline"></ion-icon>
+              <ion-label>Ticket History</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm = "4">
+            <div [routerLink] = "['/userprofile']">
+              <ion-icon name = "person-circle-outline"></ion-icon>
+              <ion-label>My Profile</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size-sm = "4">
+            <div [routerLink] = "['/aboutsharptel']">
+              <ion-icon name = "grid-outline"></ion-icon>
+              <ion-label>About Sharptel</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size-sm = "4">
+            <div [routerLink] = "['/contactus']">
+              <ion-icon name = "call-outline"></ion-icon>
+              <ion-label>Contact Us</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- <ion-item>
+    <img src = "/assets/images/gallery/SharptelLogo.png">
+  </ion-item>
+  <ion-item>
+    <ion-label color = "danger"><u>Innovating Solutions</u></ion-label>
+  </ion-item> -->
+  <!-- Gallery in Working -->
+  <!-- <ion-item>
+    <ion-slides class="image-slider" loop="true" slidesPerView="2">
+      <ion-slide *ngFor="let img of images">
+        <img src="/assets/images/gallery/{{img}}" class="thumb-img" imageViewer/>
+      </ion-slide>
+    </ion-slides>
+  </ion-item> -->
 </ion-content>
