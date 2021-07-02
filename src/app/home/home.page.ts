@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { DataserviceService } from '../Services/dataservice.service';
-// import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +43,7 @@ export class HomePage implements OnInit {
   async getTicketInfo(){
     console.log("inside get ticket info function");
     await this.dataservice.presentLoading();
-    var link = "https:/localhost:44387/api/GetTicketStatusCustomerAppApi/getTicketStatus?customerID=" +   this.customerID;
+    var link = "https://180.178.129.150:443/api/GetTicketStatusCustomerAppApi/getTicketStatus?customerID=" +   this.customerID;
     this.http.get(link).pipe(
       finalize(async() => {
         await this.dataservice.loading.dismiss();
@@ -56,29 +55,14 @@ export class HomePage implements OnInit {
       this.Response = resp;
       this.ticketStatus = this.Response;
       if(this.ticketStatus.Total == 0)
-       {this.listIsEmpty = true;}
+        {this.listIsEmpty = true;}
       console.log(this.ticketStatus);
       if(this.ticketStatus.isSuccessful){
-        console.log("api is hit successfylly");
+        console.log("api is hit successfully");
       }
       else{
         console.log("something wrong!");
       }
-      // this.ticketStatus = resp;
-
-      // if (this.ticketStatus.isSuccessful){
-      //   if (this.ticketStatus.ticketDetailsList.length == 0){
-      //     this.listIsEmpty = true;
-      //     console.log("list is empty");
-      //   }
-      //   else{
-      //     console.log("got ticket history");
-      //     console.log(resp);
-      //     // this.ticketList = this.ticketStatus.ticketDetailsList;
-      //   }
-      // }
-      // else
-      // console.log("didnt get history");
     });
   }
 }

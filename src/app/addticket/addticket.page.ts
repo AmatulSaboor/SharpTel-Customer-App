@@ -15,18 +15,20 @@ export class AddticketPage implements OnInit {
   Ticket: any ={customerID: null, linkname: "", poc: "", email: "", attachement : "", remarks: "", issueType : "", customIssueType: ""};
   Responseattachement
   linknames: any = ["Solution Set", "Connectivity"];
-  issueTypesSS: any = ["No browsing", "Slow browisng", "Packet Loss", "Internet Issue", "Other"];
-  issueTypesConn : any = ["issue 1", "issue 2", "Other"];
+  issueTypesConn: any = ["No browsing", "Slow browisng", "Packet Loss", "Internet Issue", "Other"];
+  issueTypesSS : any = ["issue 1", "issue 2", "Other"];
   constructor(private alertCtrl: AlertController, private route: Router, private dataservice: DataserviceService, private http : HttpClient) {
+      }
+  ionViewWillEnter(){
+    console.log("inside ion view add ticket");
     console.log(this.dataservice.getSignedInInfo());
-      this.custInfo = this.dataservice.getSignedInInfo();
-      this.Ticket.customerID = this.custInfo.CustomerId;
-      console.log("in add ticket page");
-      console.log(this.custInfo);
-      console.log(this.Ticket.customerID);
-
+    this.custInfo = this.dataservice.getSignedInInfo();
+    this.Ticket.customerID = this.custInfo.CustomerId;
+    console.log("in add ticket page");
+    console.log(this.custInfo);
+    console.log(this.Ticket.customerID);
+    this.clearFields();
   }
-
   ngOnInit() {
 
   }
@@ -36,8 +38,9 @@ export class AddticketPage implements OnInit {
       await this.dataservice.presentLoading();
       this.custInfo = this.dataservice.getSignedInInfo();
       this.Ticket.customerID = this.custInfo.CustomerId;
-      this.http.post('https:/localhost:44387/api/TicketQueryCustomerAppApi/addTicket', this.Ticket).pipe(
-        finalize(async() => {
+      this.http.post('https://180.178.129.150:443/api/TicketQueryCustomerAppApi/addTicket', this.Ticket).pipe(
+
+      finalize(async() => {
           await this.dataservice.loading.dismiss();
         })
         )
@@ -53,18 +56,24 @@ export class AddticketPage implements OnInit {
           this.dataservice.presentToast("There was an error in generating your tikcet, please try again!", 3000);}
           });
   }
+  validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
 
   async presentAlertConfirm() {
+
     if (this.Ticket.linkname != "" && this.Ticket.remarks != "" && this.Ticket.issueType != "" ){
-      if(this.Ticket.issueType == "Other" ){
-        if(this.Ticket.customIssueType == ""){
-          this.dataservice.presentToast("Please type your custom issue type", 3000);
-          return;
+      if (this.Ticket.email == "" || this.validateEmail(this.Ticket.email)){
+        if(this.Ticket.issueType == "Other" ){
+          if(this.Ticket.customIssueType == ""){
+            this.dataservice.presentToast("Please type your custom issue type", 3000);
+            return;
+          }
+          else{
+            this.Ticket.issueType = this.Ticket.customIssueType;
+          }
         }
-        else{
-          this.Ticket.issueType = this.Ticket.customIssueType;
-        }
-      }
     const alert = await this.alertCtrl.create({
     header: 'Confirm!',
     message: "Do you want to add ticket?",
@@ -84,7 +93,12 @@ export class AddticketPage implements OnInit {
     ]
   });
   await alert.present();
-  } else{
+  }
+  else{
+    this.dataservice.presentToast("Email address is invalid!" ,3000);
+  }
+}
+   else{
   this.dataservice.presentToast("Please fill all the fields", 3000);
 }
 }
@@ -96,5 +110,5 @@ clearFields(){
   this.Ticket.attachement = "";
   this.Ticket.issueType = "";
   this.Ticket.customIssueType = "";
-}
+  }
 }

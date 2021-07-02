@@ -1,14 +1,25 @@
-ion-slide.swiper-slide {
-  left: 25%;
+.items{
+  text-align:center;
+  color:white;
+  margin-top:5px;
+  // font-size:10px;
 }
 
-.slide-zoom {
-  background: #e6e6e6;
+ion-icon {
+  font-size: 128px;
+  // --ionicon-stroke-width: 16px;
 }
-.image-slider{
-  background: #e6e6e6;
-}
+// ion-slide.swiper-slide {
+//   left: 25%;
+// }
 
-.thumb-img {
-  padding: 10px;
-}
+// .slide-zoom {
+//   background: #e6e6e6;
+// }
+// .image-slider{
+//   background: #e6e6e6;
+// }
+
+// .thumb-img {
+//   padding: 10px;
+// }

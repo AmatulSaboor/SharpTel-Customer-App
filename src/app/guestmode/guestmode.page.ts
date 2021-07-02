@@ -29,6 +29,9 @@ export class GuestmodePage implements OnInit {
 
   ngOnInit() {
   }
+  ionViewWillEnter(){
+    this.clearQueryText();
+  }
 
   showQueryBox(){
     this.isHidden = !this.isHidden;
@@ -52,7 +55,7 @@ export class GuestmodePage implements OnInit {
     if (this.query != ""){
       this.Guest.GuestQuery = this.query;
       await this.dataservice.presentLoading();
-      this.http.post('https:/localhost:44387/api/GuestQueryCustomerAppApi/addQuery', this.Guest).pipe(
+      this.http.post('https://180.178.129.150:443/api/GuestQueryCustomerAppApi/addQuery', this.Guest).pipe(
         finalize(async() => {
           await this.dataservice.loading.dismiss();
         })

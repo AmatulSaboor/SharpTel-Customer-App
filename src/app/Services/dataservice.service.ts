@@ -5,13 +5,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { EventsService } from './events.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataserviceService {
   public loading:any;
-  constructor(public loadingController: LoadingController, public alertCtrl: AlertController, public route: Router, public toastController: ToastController) { }
+  logOutUser:any;
+  constructor(private events: EventsService, public loadingController: LoadingController, public alertCtrl: AlertController, public route: Router, public toastController: ToastController) { }
 
   getSignedInInfo(){
     return JSON.parse(localStorage.getItem("SignedInUser"));
@@ -65,6 +67,12 @@ export class DataserviceService {
           handler: () => {
             this.removeUser();
             this.removeUserType();
+            console.log("before publish data");
+            console.log(this.logOutUser);
+
+            this.events.publishSomeData({
+              User: this.logOutUser
+            });
             console.log(this.getUserType);
             console.log("signed in user: " + this.getSignedInInfo());
             this.presentToast("Signed out sucessfully!", 3000);

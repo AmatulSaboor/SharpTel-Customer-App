@@ -19,6 +19,7 @@ export class UserprofilePage implements OnInit {
   customerInfo:any = {CustomerId : null, CustomerName : "", CompanyName : "", PhoneNo : "", Email : ""};
   isEditable = false;
   Response :any;
+  ValidationErrors = [];
   constructor(private events: EventsService, private http: HttpClient, private dataservice: DataserviceService) {
 
   }
@@ -38,7 +39,7 @@ export class UserprofilePage implements OnInit {
   async editUser(){
     console.log(this.customerInfo);
     await this.dataservice.presentLoading();
-    this.http.post('https:/localhost:44387/api/CustomerProfileAppApi/editCustomer', this.customerInfo).pipe(
+    this.http.post('https://180.178.129.150:443/api/CustomerProfileAppApi/editCustomer', this.customerInfo).pipe(
       finalize(async() => {
         await this.dataservice.loading.dismiss();
       })
@@ -54,13 +55,19 @@ export class UserprofilePage implements OnInit {
           this.dataservice.presentToast("Changes have been saved", 3000);
           this.dataservice.setSignedInInfo(this.customerInfo);
           console.log(this.dataservice.getSignedInInfo());
+          console.log(this.Response);
           this.toggleEditingMode();
           this.events.publishSomeData({
             User: this.Response.CustomerInfo
           });
         }
       else{
-        this.dataservice.presentToast(this.Response.ValidationErros[0], 2000);
+        this.ValidationErrors = this.Response.ValidationErrors;
+        console.log(this.Response.ValidationErrors);
+        console.log(this.ValidationErrors);
+        // this.dataservice.presentToast(this.Response.ValidationErros[0], 2000);
+        this.dataservice.presentToast(this.ValidationErrors[0], 2000);
+
         console.log("cahnges in failure");
       }
         });

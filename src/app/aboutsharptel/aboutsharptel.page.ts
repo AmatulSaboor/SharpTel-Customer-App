@@ -11,11 +11,7 @@ export class AboutsharptelPage implements OnInit {
   images = ['SahrptelLogo.png', 'groupphoto.png'];
   userType: any;
   constructor(private dataservice: DataserviceService) {
-    this.isCustomer();
-    console.log("inside about sharptel page");
    }
-
-  isConnectivity = false;
   ngOnInit() {
   }
 
@@ -29,10 +25,4 @@ export class AboutsharptelPage implements OnInit {
    this.userType = this.dataservice.getUserType();
    console.log(this.userType);
   }
-
-  toggleIsConnectivity(){
-    this.isConnectivity = !this.isConnectivity;
-    console.log(this.isConnectivity);
-  }
-
 }

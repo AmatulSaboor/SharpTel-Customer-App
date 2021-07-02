@@ -22,7 +22,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-list *ngIf="Ticket.linkname == 'Connectivity'">
+    <ion-list *ngIf="Ticket.linkname == 'Solution Set'">
       <ion-item>
         <ion-label>Nature of Problem</ion-label>
         <ion-select placeholder="Select One"  [(ngModel)]= "Ticket.issueType" name = "issueTypeSS">
@@ -31,7 +31,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-list *ngIf="Ticket.linkname == 'Solution Set'">
+    <ion-list *ngIf="Ticket.linkname == 'Connectivity'">
       <ion-item>
         <ion-label>Nature of Problem</ion-label>
         <ion-select placeholder="Select One"  [(ngModel)]= "Ticket.issueType" name = "issueTypeConn">

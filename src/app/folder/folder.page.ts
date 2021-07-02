@@ -24,7 +24,7 @@ export class FolderPage implements OnInit {
   public folder: string;
   constructor(public dataservice: DataserviceService, private http:HttpClient, public route:Router, public nav:NavController,
      private modalCtrl : ModalController, private activatedRoute: ActivatedRoute) { }
-     GuestInfo = {name :  "", phoneNo: "", city : "", isSubmit:null};
+     GuestInfo = {name :  "", phoneNo: "", city : "", email : "", isSubmit:null};
      Response : any = {ValidationErrors: [], isSuccessful : false, GuestId : 0};
   // eslint-disable-next-line max-len
   ngOnInit() {
@@ -54,7 +54,7 @@ export class FolderPage implements OnInit {
 
     async addGuestToDatabase(guestInfo) {
       await this.dataservice.presentLoading();
-      this.http.post('https://localhost:44387/api/GuestQueryCustomerAppApi/addGuest', guestInfo).pipe(
+      this.http.post('https://180.178.129.150:443/api/GuestQueryCustomerAppApi/addGuest', guestInfo).pipe(
         finalize(async() => {
           await this.dataservice.loading.dismiss();
         })
@@ -71,6 +71,7 @@ export class FolderPage implements OnInit {
       }
       else
         console.log("something wrong");
+        this.dataservice.presentToast(this.Response.ValidationErrors[0], 3000);
       },
      );
     }

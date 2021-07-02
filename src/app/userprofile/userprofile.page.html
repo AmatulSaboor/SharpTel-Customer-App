@@ -10,37 +10,39 @@
 <ion-content>
   <span *ngIf="this.isEditable">
     <ion-item>
-      <ion-label>Name: </ion-label>
+      <ion-label><b>Name : </b></ion-label>
       <ion-input type = "text" [(ngModel)] = "customerInfo.CustomerName" name = "name" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Email: </ion-label>
+      <ion-label><b>Email : </b></ion-label>
       <ion-input type = "email" [(ngModel)] = "customerInfo.Email" name = "email" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Phone No: </ion-label>
+      <ion-label><b>Phone No : </b></ion-label>
       <ion-input type = "text" [(ngModel)] = "customerInfo.PhoneNo" name = "phone no" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Company Name: </ion-label>
+      <ion-label><b>Company Name : </b></ion-label>
       <ion-input type = "text" [(ngModel)] = "customerInfo.CompanyName" name = "company" required></ion-input>
     </ion-item>
-    <ion-button (click) = "toggleEditingMode()">Cancel</ion-button>
-    <ion-button color = "danger" (click) = "editUser()">Save Changes</ion-button>
+    <ion-button style = "margin-left: 15px; margin-top: 20px;" (click) = "toggleEditingMode()">Cancel</ion-button>
+    <ion-button style = "margin-left: 15px; margin-top: 20px;" color = "danger" (click) = "editUser()">Save Changes</ion-button>
   </span>
   <span *ngIf="!this.isEditable">
     <ion-item>
-      <ion-label>Name: {{this.customerInfo.CustomerName}}</ion-label>
+      <ion-label><b>Name : </b>{{this.customerInfo.CustomerName}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Email: {{this.customerInfo.Email}}</ion-label>
+      <ion-label><b>Email : </b>{{this.customerInfo.Email}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Company: {{this.customerInfo.CompanyName}}</ion-label>
+      <ion-label><b>Company : </b>{{this.customerInfo.CompanyName}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>PhoneNo: {{this.customerInfo.PhoneNo}}</ion-label>
+      <ion-label><b>PhoneNo : </b>{{this.customerInfo.PhoneNo}}</ion-label>
     </ion-item>
   </span>
-  <ion-button *ngIf="!this.isEditable" (click) = "toggleEditingMode()">Edit</ion-button>
+  <!-- <div style = "margin-right: 40px;"> -->
+    <ion-button  style = "margin-left: 15px; margin-top: 20px;" *ngIf="!this.isEditable" (click) = "toggleEditingMode()">Edit</ion-button>
+  <!-- </div> -->
 </ion-content>

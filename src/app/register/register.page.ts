@@ -29,7 +29,7 @@ export class RegisterPage implements OnInit {
   // ================================= register user function ====================================
   async RegisterUser(User){
     await this.dataservice.presentLoading();
-    this.http.post('https:/localhost:44387/api/LogInCustomerAppApi/Register', User).pipe(
+    this.http.post('https://180.178.129.150:443/api/LogInCustomerAppApi/Register', User).pipe(
       finalize(async() => {
         await this.dataservice.loading.dismiss();
       })

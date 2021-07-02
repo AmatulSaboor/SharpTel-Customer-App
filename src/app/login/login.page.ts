@@ -22,13 +22,23 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+  ionViewWillEnter(){
+    this.ClearFields();
+  }
+
+  ClearFields(){
+    this.User.UserName = "";
+    this.User.Password = "";
+  }
 
   // ================================= sign in function ====================================
   async SignIn(User){
     console.log(User.UserName + User.Password);
     await this.dataservice.presentLoading();
-    this.http.post('https:/localhost:44387/api/LogInCustomerAppApi/Login', User).pipe(
-      finalize(async() => {
+    // this.http.post('https://180.178.129.150:443/api/LogInCustomerAppApi/Login', User).pipe(
+  this.http.post('https://180.178.129.150:443/api/LogInCustomerAppApi/Login', User).pipe(
+
+    finalize(async() => {
         await this.dataservice.loading.dismiss();
       })
       )
@@ -46,6 +56,7 @@ export class LoginPage implements OnInit {
         console.log(a.CustomerId);
         console.log("user id is above :");
         this.dataservice.presentToast("Successfully Signed In", 2000);
+        console.log(this.Response.CustomerInfo);
         this.events.publishSomeData({
           User: this.Response.CustomerInfo
         });

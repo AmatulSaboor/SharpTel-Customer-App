@@ -16,6 +16,16 @@ export class GuestmodalPage implements OnInit {
   constructor(private route: Router, private dataservice: DataserviceService, private modalCtrl: ModalController) { }
   ngOnInit() {
   }
+  ionViewWillEnter(){
+    this.clearFields();
+  }
+
+  clearFields(){
+    this.Guest.name = null;
+    this.Guest.phoneNo = null;
+    this.Guest.city = null;
+    this.Guest.email = null;
+  }
 
   dismiss() {
     console.log("inside dismiss function");
@@ -23,14 +33,17 @@ export class GuestmodalPage implements OnInit {
     console.log(this.Guest.name == null);
     if(this.Guest.name == null || this.Guest.phoneNo == null || this.Guest.city == null || this.Guest.email == null)
     {
+      console.log("inside failure guest entry");
       this.dataservice.presentToast("Please fill all the fields!", 3000);
-      
+
     }
     else{
+      console.log("inside success guest entry");
       this.modalCtrl.dismiss({
       name : this.Guest.name,
       phoneNo : this.Guest.phoneNo,
       city : this.Guest.city,
+      email : this.Guest.email,
       isSubmit: true
     });
     }
@@ -44,6 +57,7 @@ export class GuestmodalPage implements OnInit {
       name : "",
       phoneNo : "",
       city : "",
+      email: "",
       isSubmit: false
     });
   }

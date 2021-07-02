@@ -27,27 +27,36 @@ export class AppComponent {
     { title: 'Contact Us', url: '/contactus', icon: 'call' },
   ];
   // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
+    userInfo = {CustomerId: 0, CustomerName: "", Email: ""};
     constructor(private events: EventsService, private route: Router, private dataservice: DataserviceService) {
-
+      console.log("inside app.comp page constructor");
+      this.initApp();
   }
   ionViewWillEnter(){
     console.log("inside ion view will enter app.compo");
-    this.initApp();
+
   }
 
   initApp(){
+      console.log("inside initApp fucntion");
 
-    this.events.getObservable().subscribe((data) => {
-      console.log("Data received:", data);
-      this.UserId = data.User.CustomerId;
-      this.UserName = data.User.CustomerName;
-      this.UserEmail = data.User.Email;
-    })
-    if (this.dataservice.getSignedInInfo() != null){
+
+    //   this.events.getObservable().subscribe((data) => {
+    //   console.log("Data received:", data);
+    //   this.UserId = data.User.CustomerId;
+    //   this.UserName = data.User.CustomerName;
+    //   this.UserEmail = data.User.Email;
+    // })
+    if(this.dataservice.getSignedInInfo() != null){
+      console.log(this.UserName + this.UserEmail);
       console.log("already signed in");
       console.log(this.dataservice.getSignedInInfo());
-        this.route.navigate(['/home']);
+      this.userInfo = this.dataservice.getSignedInInfo();
+      console.log(this.userInfo);
+      this.UserId = this.userInfo.CustomerId;
+      this.UserName = this.userInfo.CustomerName;
+      this.UserEmail = this.userInfo.Email;
+      this.route.navigate(['/home']);
     }
     else{
       console.log("not signed in");

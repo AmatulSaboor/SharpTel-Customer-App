@@ -33,7 +33,7 @@ export class TickethistoryPage implements OnInit {
   async getTicketHistory(){
 
     await this.dataservice.presentLoading();
-    var link = "https:/localhost:44387/api/TicketQueryCustomerAppApi/getTicketHistory?customerID=" + this.customerID;
+    var link = "https://180.178.129.150:443/api/TicketQueryCustomerAppApi/getTicketHistory?customerID=" + this.customerID;
     this.http.get(link).pipe(
       finalize(async() => {
         await this.dataservice.loading.dismiss();

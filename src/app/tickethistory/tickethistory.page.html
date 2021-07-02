@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="listIsEmpty">
-    <p><span> There is no ticket history </span></p>
+  <div style = "margin-top:100px;" *ngIf="listIsEmpty">
+    <p style = "text-align:center;"><span> There is no ticket history </span></p>
     <ion-button [routerLink]="['/addticket']" expand="block" color="danger">Add Ticket NOW</ion-button>
   </div>
 
@@ -21,11 +21,11 @@
             <ion-item lines="full">
               <ion-label *ngIf="ticket.isOpen" position = "floating" color = "success" class = "ion-text-right">Open</ion-label>
               <ion-label *ngIf="!ticket.isOpen" position = "floating" color = "danger" class = "ion-text-right">Closed</ion-label>
-              <ion-label position = "floating">Service Type : {{ticket.LinkName}}</ion-label>
-              <ion-label position = "floating">Contact No : {{ticket.POC}}</ion-label>
-              <ion-label position = "floating">Opened On : {{ticket.openedOn | date:'MMM d, y'}}</ion-label>
-              <ion-label position = "floating">Nature of Problem : {{ticket.IssueType}}</ion-label>
-              <ion-label style = "margin-bottom : 20px;" position = "floating">Remarks : {{ticket.Remarks}}</ion-label>
+              <ion-label position = "floating"><b>Service Type : </b>{{ticket.LinkName}}</ion-label>
+              <ion-label position = "floating"><b>Contact No : </b>{{ticket.POC}}</ion-label>
+              <ion-label position = "floating"><b>Opened On : </b>{{ticket.openedOn | date:'MMM d, y'}}</ion-label>
+              <ion-label position = "floating"><b>Nature of Problem : </b>{{ticket.IssueType}}</ion-label>
+              <ion-label style = "margin-bottom : 20px;" position = "floating"><b>Remarks : </b>{{ticket.Remarks}}</ion-label>
             </ion-item>
           </ion-col>
         </ion-row>

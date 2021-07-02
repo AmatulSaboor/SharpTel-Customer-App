@@ -20,6 +20,9 @@ export class AddqueryPage implements OnInit {
   custInfo:any;
   customerQuery = {customerId: 0, query : this.query};
   constructor(private route: Router, private dataservice: DataserviceService, private alertCtrl : AlertController, private http : HttpClient) {
+  }
+  ionViewWillEnter(){
+    this.clearQueryText();
     this.custInfo = this.dataservice.getSignedInInfo();
     this.customerQuery.customerId = this.custInfo.CustomerId;
     console.log("in add query page");
@@ -50,7 +53,7 @@ export class AddqueryPage implements OnInit {
     console.log(this.customerQuery);
 
       await this.dataservice.presentLoading();
-      this.http.post('https:/localhost:44387/api/CustomerQueryCustomerAppApi/addQuery', this.customerQuery).pipe(
+      this.http.post('https://180.178.129.150:443/api/CustomerQueryCustomerAppApi/addQuery', this.customerQuery).pipe(
         finalize(async() => {
           await this.dataservice.loading.dismiss();
         })
